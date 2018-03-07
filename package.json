@@ -1,0 +1,23 @@
+{
+  "name": "jsend-client",
+  "version": "0.0.1",
+  "description": "A small class for jsend on the browser side",
+  "main": "src/JSend",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morjodrom/jsend-client.git"
+  },
+  "keywords": [
+    "jsend",
+    "client"
+  ],
+  "author": "Morjodrom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Morjodrom/jsend-client/issues"
+  },
+  "homepage": "https://github.com/Morjodrom/jsend-client#readme"
+}
