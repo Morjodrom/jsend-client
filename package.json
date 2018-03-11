@@ -1,6 +1,6 @@
 {
   "name": "jsend-client",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A small class for jsend on the browser side",
   "main": "src/JSend",
   "scripts": {
