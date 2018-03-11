@@ -15,11 +15,15 @@ export default class JSend {
 	}
 
 	get success(){
-		return this.status === JSend.SUCCESS;
+		return this.status === JSend.SUCCESS
 	}
 
 	get fail(){
-		return this.status === JSend.FAIL;
+		return this.status === JSend.FAIL
+	}
+
+	get error(){
+		return this.status === JSend.ERROR
 	}
 }
 
