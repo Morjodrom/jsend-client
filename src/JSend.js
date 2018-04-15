@@ -11,6 +11,9 @@ export default class JSend {
 	}
 
 	static parse(json){
+		if(typeof json === 'string'){
+			json = JSON.parse(json)
+		}
 		return new JSend(json)
 	}
 
