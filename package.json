@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "description": "A small class for jsend on the browser side",
   "main": "src/JSend",
+  "module": "dist/jsend.js",
+  "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --config webpack.dev.js",
+    "test": "mocha-webpack --watch \"test/index.js\""
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,16 @@
   "bugs": {
     "url": "https://github.com/Morjodrom/jsend-client/issues"
   },
-  "homepage": "https://github.com/Morjodrom/jsend-client#readme"
+  "homepage": "https://github.com/Morjodrom/jsend-client#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "mocha": "^5.2.0",
+    "mocha-webpack": "^1.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
 }

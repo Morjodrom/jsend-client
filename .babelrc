@@ -1,0 +1,16 @@
+{
+  "env": {
+	"production": {
+	  "presets": [["es2015", {"modules": false}], "stage-2"],
+	  "plugins": ["transform-object-rest-spread", "lodash"],
+	  "comments": false
+	},
+	"development": {
+	  "presets": [
+		["env"]
+	  ],
+	  "plugins": ["transform-object-rest-spread"],
+	  "comments": true
+	}
+  }
+}
