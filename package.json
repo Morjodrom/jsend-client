@@ -1,13 +1,14 @@
 {
   "name": "jsend-client",
-  "version": "0.1.0",
-  "description": "A small class for jsend on the browser side",
-  "main": "src/JSend",
+  "version": "0.2.0",
+  "description": "A small layer for jSend on the browser side",
+  "main": "dist/jsend",
   "module": "dist/jsend.js",
   "sideEffects": false,
   "scripts": {
-    "dev": "webpack --config webpack.dev.js",
-    "test": "mocha-webpack --watch \"test/index.js\""
+    "dev": "set NODE_ENV=development&&webpack --config webpack.dev.js",
+    "prod": "set NODE_ENV=production&&webpack --config webpack.dev.js",
+    "test": "mocha \"test/index.js\""
   },
   "repository": {
     "type": "git",
@@ -27,9 +28,9 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "mocha": "^5.2.0",
-    "mocha-webpack": "^1.1.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"

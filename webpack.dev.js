@@ -1,13 +1,21 @@
 const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 
 const DIST = path.resolve(__dirname, 'dist')
 const SRC = path.resolve(__dirname, 'src')
+const IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
+process.env.DEBUG = IS_DEVELOPMENT
+
+const SLOW_AND_ACCURATE_SOURCE = 'source-map'
+const FAST_SOURCE = 'cheap-module-eval-source-map '
+
 
 module.exports = {
 	target: "web",
+	devtool: false,
 	module: {
 		rules: [{
 			test: /\.js$/,
@@ -17,11 +25,12 @@ module.exports = {
 	},
 
 	plugins: [
+		new webpack.EnvironmentPlugin(['NODE_ENV', 'DEBUG']),
 		new CleanWebpackPlugin(DIST),
-		new UglifyJSPlugin()
+		// new UglifyJSPlugin()
 	],
 	entry: {
-		jsend: "./src/JSend"
+		jsend: "./src/JSend.js"
 	},
 	output: {
 		filename: '[name].js',
@@ -36,5 +45,7 @@ module.exports = {
 		]
 	},
 
-	mode: "development"
+	watch: IS_DEVELOPMENT,
+
+	mode: process.env.NODE_ENV
 }
