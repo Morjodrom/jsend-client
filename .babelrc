@@ -1,14 +1,12 @@
 {
   "env": {
 	"production": {
-	  "presets": [["es2015", {"modules": false}], "stage-2"],
+	  "presets": [["env", {"modules": false}]],
 	  "plugins": ["transform-object-rest-spread", "lodash"],
 	  "comments": false
 	},
 	"development": {
-	  "presets": [
-		["env"]
-	  ],
+	  "presets": [["env", {"modules": false}]],
 	  "plugins": ["transform-object-rest-spread"],
 	  "comments": true
 	}

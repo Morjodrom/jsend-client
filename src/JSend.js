@@ -2,15 +2,18 @@
  * @class JSend
  */
 export default class JSend {
+
 	/**
 	 * @param {string} status
 	 * @param {null|Array|Object} data
-	 * @param {null|String} message
+	 * @param {null|String|string} message
+	 * @param {null|String|string} code
 	 */
-	constructor({status, data = null, message = null}) {
+	constructor({status, data = null, message = null, code = null}) {
 		this.status = status
 		this.data = data
 		this.message = message
+		this.code = code
 	}
 
 	/**
@@ -24,7 +27,32 @@ export default class JSend {
 		if(typeof json === 'string'){
 			json = JSON.parse(json)
 		}
+		JSend.validate(json)
 		return new JSend(json)
+	}
+
+	/**
+	 * @param json
+	 * @throws {RangeError} - if no required field provided
+	 * @throws {TypeError} - if the objtc is not in JSend format
+	 */
+	static validate(json){
+		let required = []
+
+		if(json.status === JSend.ERROR && !json.message){
+			throw new RangeError('JSend error message must be provided')
+		}
+		else if(json.status === JSend.SUCCESS || json.status === JSend.FAIL){
+			required = ['data']
+		}
+		else {
+			throw new RangeError('Wrong jsend response without a status')
+		}
+		for (let field of required) {
+			if(!json[field]){
+
+			}
+		}
 	}
 
 	/**

@@ -1,6 +1,6 @@
 {
   "name": "jsend-client",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A small layer for jSend on the browser side",
   "main": "dist/jsend",
   "module": "dist/jsend.js",
