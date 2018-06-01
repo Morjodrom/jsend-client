@@ -37,21 +37,12 @@ export default class JSend {
 	 * @throws {TypeError} - if the objtc is not in JSend format
 	 */
 	static validate(json){
-		let required = []
-
-		if(json.status === JSend.ERROR && !json.message){
-			throw new RangeError('JSend error message must be provided')
-		}
-		else if(json.status === JSend.SUCCESS || json.status === JSend.FAIL){
-			required = ['data']
-		}
-		else {
+		let wrongStatus = [JSend.SUCCESS, JSend.ERROR, JSend.FAIL].indexOf(json.status) === -1
+		if(wrongStatus) {
 			throw new RangeError('Wrong jsend response without a status')
 		}
-		for (let field of required) {
-			if(!json[field]){
-
-			}
+		if(json.status === JSend.ERROR && !json.message){
+			throw new RangeError('JSend error message must be provided')
 		}
 	}
 
