@@ -1,9 +1,9 @@
 {
   "name": "jsend-client",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "A small layer for jSend on the browser side",
-  "main": "dist/jsend",
-  "module": "dist/jsend.js",
+  "main": "src/JSend.js",
+  "module": "src/jsend.js",
   "sideEffects": false,
   "scripts": {
     "dev": "set NODE_ENV=development&&webpack --config webpack.dev.js",
@@ -19,7 +19,7 @@
     "client"
   ],
   "author": "Morjodrom",
-  "license": "MIT",
+  "license": "WTFPL",
   "bugs": {
     "url": "https://github.com/Morjodrom/jsend-client/issues"
   },
