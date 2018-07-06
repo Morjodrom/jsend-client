@@ -2,7 +2,7 @@
   "env": {
 	"production": {
 	  "presets": [["env", {"modules": false}]],
-	  "plugins": ["transform-object-rest-spread", "lodash"],
+	  "plugins": ["transform-object-rest-spread"],
 	  "comments": false
 	},
 	"development": {
