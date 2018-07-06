@@ -5,9 +5,9 @@ export default class JSend {
 
 	/**
 	 * @param {string} status
-	 * @param {null|Array|Object} data
-	 * @param {null|String|string} message
-	 * @param {null|String|string} code
+	 * @param {null|*} [data = null]
+	 * @param {null|String|string} [message = null]
+	 * @param {null|String|string} [code = null]
 	 */
 	constructor({status, data = null, message = null, code = null}) {
 		this.status = status
@@ -27,31 +27,27 @@ export default class JSend {
 		if(typeof json === 'string'){
 			json = JSON.parse(json)
 		}
+		else if(typeof json !== 'object'){
+			throw TypeError('JSend expected object got ' + typeof json)
+		}
 		JSend.validate(json)
 		return new JSend(json)
 	}
 
 	/**
-	 * @param json
+	 * @param {Object|JSend} jsend
 	 * @throws {RangeError} - if no required field provided
 	 * @throws {TypeError} - if the objtc is not in JSend format
 	 */
-	static validate(json){
-		let required = []
-
-		if(json.status === JSend.ERROR && !json.message){
+	static validate(jsend){
+		if(!jsend.status){
+			throw new RangeError('JSend must have a status')
+		}
+		if(jsend.status === JSend.ERROR && !jsend.message){
 			throw new RangeError('JSend error message must be provided')
 		}
-		else if(json.status === JSend.SUCCESS || json.status === JSend.FAIL){
-			required = ['data']
-		}
-		else {
-			throw new RangeError('Wrong jsend response without a status')
-		}
-		for (let field of required) {
-			if(!json[field]){
-
-			}
+		if(jsend.status !== JSend.ERROR && jsend.code !== null && jsend.code !== void(0)){
+			throw new RangeError('Only error JSend can have the code')
 		}
 	}
 
@@ -77,22 +73,35 @@ export default class JSend {
 	get error(){
 		return this.status === JSend.ERROR
 	}
+
+
+	/**
+	 * All went well, and (usually) some data was returned.
+	 *
+	 * @return {string}
+	 */
+	static get SUCCESS(){
+		return 'success'
+	}
+
+
+	/**
+	 * An error occurred in processing the request, i.e. an exception was thrown
+	 *
+	 * @return {string}
+	 */
+	static get ERROR() {
+		return 'error'
+	}
+
+
+	/**
+	 * There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied
+	 *
+	 * @return {string}
+	 */
+	static get FAIL() {
+		return 'fail'
+	}
 }
-/**
- * All went well, and (usually) some data was returned.
- *
- * @type {string}
- */
-JSend.SUCCESS = 'success'
-/**
- * An error occurred in processing the request, i.e. an exception was thrown
- *
- * @type {string}
- */
-JSend.ERROR = 'error'
-/**
- * There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied
- *
- * @type {string}
- */
-JSend.FAIL = 'fail'
+
